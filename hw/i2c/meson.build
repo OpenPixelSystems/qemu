@@ -16,4 +16,7 @@ i2c_ss.add(when: 'CONFIG_OMAP', if_true: files('omap_i2c.c'))
 i2c_ss.add(when: 'CONFIG_PPC4XX', if_true: files('ppc4xx_i2c.c'))
 i2c_ss.add(when: 'CONFIG_PCA954X', if_true: files('i2c_mux_pca954x.c'))
 i2c_ss.add(when: 'CONFIG_PMBUS', if_true: files('pmbus_device.c'))
+
+# OPS dummy device
+i2c_ss.add(when: 'CONFIG_OPS_DUMMY_I2C', if_true: files('dummy-i2c.c'))
 softmmu_ss.add_all(when: 'CONFIG_I2C', if_true: i2c_ss)
