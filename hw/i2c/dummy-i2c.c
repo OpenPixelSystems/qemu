@@ -12,10 +12,12 @@
 
 #define TYPE_DUMMY_I2C "dummy_i2c"
 
-typedef struct {
+OBJECT_DECLARE_SIMPLE_TYPE(DummyI2CState, DUMMY_I2C)
+
+struct DummyI2CState {
     I2CSlave i2c;
     uint8_t control;
-}DummyI2CState;
+};
 
 static void dummy_i2c_get_data(Object *obj, Visitor *v, const char *name,
         void *opaque, Error **errp)
@@ -49,6 +51,9 @@ static int dummy_i2c_event(I2CSlave *i2c, enum i2c_event event)
 static void dummy_i2c_realize(DeviceState *dev, Error **errp)
 {
     printf("Running i2c realize\n");
+    I2CSlave *i2c = I2C_SLAVE(dev);
+    DummyI2CState *s = DUMMY_I2C(i2c);
+    (void)s;
 }
 
 static void dummy_i2c_init(Object *obj)
